@@ -1,0 +1,84 @@
+body{
+    background-color: rgba(58, 86, 106, 1);
+    color: rgba(227, 216, 186, 1);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+#outer-box{
+    width: 970px;
+    height: 900px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(6, 15, 34, 0.37);
+    border-radius: 30px;
+}
+
+#title{
+    width: 790px;
+    height: 100px;
+    background-color: rgba(13, 12, 12, 0.7);
+    position: absolute;
+    left: 88px;
+    top: 72px;
+    font-size: 50px;
+    border-radius: 20px;
+}
+
+#title p{
+    padding: 0px;
+    margin: 0px;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/* .initial,.final{
+    height: 300px;
+    width: 400px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: transform 1s;
+    
+}
+
+.final{
+    transform: rotateY(90deg);
+}
+
+.rotate_initial{
+    transform: rotateY(90deg);
+}
+
+.rotate_final{
+    transform: rotateY(0deg);
+}
+
+.card1,.card2,.card3{
+    width: 200px;
+    height: 267px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: -20px 0px 20px -15px;
+    transition: transform 0.2s;
+    border-radius: 10px;
+}
+
+.card2{
+    left: 60px;
+}
+
+.card3{
+    left: 120px;
+}
+
+.pop{
+    
+    transform: scale(1.1);
+} */
