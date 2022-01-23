@@ -97,3 +97,58 @@ body{
     left: 665px;
     top: 117.5px;
 }
+
+.cards{
+    position: absolute;
+    width: 227.5px;
+    height: 243.41px;
+    top: 43.6;
+}
+
+.cards.player{
+    left: 188.13px;
+}
+
+.cards.computer{
+    left: 984.38px;
+}
+
+.card{
+    width: 175px;
+    height: 243.41px;
+    box-shadow: -20px 0px 30px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    position: absolute;
+}
+
+.card.paper{
+    left: 30px;
+}
+
+.card.scissor{
+    left: 60px;
+}
+
+.button{
+    width: 131.25px;
+    height: 72px;
+    background: #192E47;
+    border-radius: 20px;
+    position: absolute;
+    left: 634.38px;
+    top: 90px;
+}
+
+#message-counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#message-panel{
+    position: absolute;
+    width: 630px;
+    height: 72px;
+    background: #3A566A;
+    border-radius: 10px;
+}
