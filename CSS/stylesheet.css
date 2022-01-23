@@ -19,22 +19,26 @@ body{
 
 #header{
     height: 130px;
+    position: relative;
 }
 
 #vs-counter{
     height: 280px;
+    position: relative;
 }
 
 #card-counter{
     height: 300px;
+    position: relative;
 }
 
 #message-counter{
     height: 140px;
+    position: relative;
 }
 
 #heading{
-    background-color: rgba(13, 12, 12, 0.7);
+    background: rgba(13, 12, 12, 0.7);
     width: 691.25px;
     height: 90px;
     border-radius: 20px;
@@ -50,3 +54,46 @@ body{
     font-size: 45px;
 }
 
+.tries{
+    position: absolute;
+    width: 113.75px;
+    height: 36px;
+    background: rgba(58, 86, 106, 1);
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    top: 117.5px;
+}
+
+.player.tries{
+    left: 319.38px;
+}
+
+.computer.tries{
+    left: 966.88px;
+}
+
+.card-counter{
+    position: absolute;
+    width: 175px;
+    height: 243.41px;
+    background: rgba(21, 41, 68, 0.76);
+    border-radius: 10px;
+    top: 14px;
+}
+
+.player.card-counter{
+    left: 463.75px;
+}
+
+.computer.card-counter{
+    left: 761.25px
+}
+
+#vs{
+    font-size: 40px;
+    position: absolute;
+    left: 665px;
+    top: 117.5px;
+}
