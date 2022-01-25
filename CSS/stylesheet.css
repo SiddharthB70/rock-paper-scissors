@@ -8,7 +8,7 @@ body{
 
 #outer-box{
     height: 900px;
-    width: 1400px;
+    width: 1600px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -67,11 +67,11 @@ body{
 }
 
 .player.tries{
-    left: 319.38px;
+    left: 419.38px;
 }
 
 .computer.tries{
-    left: 966.88px;
+    left: 1066.88px;
 }
 
 .card-counter{
@@ -84,17 +84,18 @@ body{
 }
 
 .player.card-counter{
-    left: 463.75px;
+    left: 563.75px;
 }
 
 .computer.card-counter{
-    left: 761.25px
+    left: 861.25px
 }
 
 #vs{
     font-size: 40px;
     position: absolute;
-    left: 665px;
+    left: 800px;
+    transform: translateX(-50%);
     top: 117.5px;
 }
 
@@ -103,14 +104,15 @@ body{
     width: 227.5px;
     height: 243.41px;
     top: 43.6;
+    transition: all 1s;
 }
 
 .cards.player{
-    left: 188.13px;
+    left: 238.13px;
 }
 
 .cards.computer{
-    left: 984.38px;
+    left: 1134.38px;
 }
 
 .card{
@@ -119,14 +121,18 @@ body{
     box-shadow: -20px 0px 30px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     position: absolute;
+    transition: left 1s;
 }
 
+.card.rock{
+    left: 0px;
+}
 .card.paper{
-    left: 30px;
+    left: 26px;
 }
 
 .card.scissor{
-    left: 60px;
+    left: 52px;
 }
 
 .button{
@@ -135,7 +141,7 @@ body{
     background: #192E47;
     border-radius: 20px;
     position: absolute;
-    left: 634.38px;
+    left: 734.38px;
     top: 90px;
 }
 
@@ -151,4 +157,25 @@ body{
     height: 72px;
     background: #3A566A;
     border-radius: 10px;
+}
+
+.cards-hover{
+    width: 545px;
+    transform: translateX(-33.9444954%);
+}
+
+.card.rock.hover{
+    left: 0px;
+}
+
+.card.paper.hover{
+    left: 185px;
+}
+
+.card.scissor.hover{
+    left: 370px;
+}
+
+.player .card:hover{
+    transform: scale(1.1);
 }
