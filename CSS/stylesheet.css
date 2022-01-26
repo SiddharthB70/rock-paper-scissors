@@ -6,7 +6,7 @@ body{
 }
 
 #outer-box{
-    height: 900px;
+    height: 920px;
     width: 1600px;
     position: absolute;
     left: 50%;
@@ -27,12 +27,12 @@ body{
 }
 
 #card-counter{
-    height: 300px;
+    height: 360px;
     position: relative;
 }
 
 #message-counter{
-    height: 140px;
+    height: 150px;
     position: relative;
 }
 
@@ -75,19 +75,19 @@ body{
 
 .card-counter{
     position: absolute;
-    width: 175px;
-    height: 243.41px;
+    width: 195px;
+    height: 263.41px;
     background: rgba(21, 41, 68, 0.76);
     border-radius: 10px;
     top: 14px;
 }
 
 .player.card-counter{
-    left: 563.75px;
+    left: 553.75px;
 }
 
 .computer.card-counter{
-    left: 861.25px
+    left: 851.25px
 }
 
 #vs{
@@ -102,9 +102,8 @@ body{
     position: absolute;
     width: 227.5px;
     height: 243.41px;
-    top: 43.6;
+    top: 53.6px;
     transition: all 1s;
-    border-style: solid;
 }
 
 .cards.player{
@@ -122,7 +121,7 @@ body{
     box-shadow: -20px 0px 30px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     position: absolute;
-    transition: left 1s,top 1s;
+    transition: left 1s,top 1s,box-shadow 1s;
 }
 
 .card.rock{
@@ -136,7 +135,7 @@ body{
     left: 52px;
 }
 
-.button{
+#button{
     width: 131.25px;
     height: 72px;
     background: #192E47;
@@ -144,6 +143,11 @@ body{
     position: absolute;
     left: 734.38px;
     top: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    transition: transform 0.2s;
 }
 
 #message-counter{
@@ -177,12 +181,8 @@ body{
     left: 370px;
 }
 
-/* .player .card:hover{
-    --card-hover: 1.1;
-    transform: scale(var(--card-hover));
-} */
-
 #player-card{
-    left: 505.75px;
-    top: -286px
+    left: 510.75px;
+    top: -313.6px;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
 }

@@ -1,4 +1,8 @@
 function hover(){
+    this.removeEventListener("click",hover);
+    this.removeEventListener("mouseenter",scaleCard);
+    this.addEventListener("mouseleave",returnScale);
+    this.removeAttribute("style");
     const playerCards = document.querySelector(".cards");
     playerCards.addEventListener("mouseenter",splitCards);
     playerCards.addEventListener("mouseleave",joinCards)
@@ -47,11 +51,25 @@ function getPlayerCard(e){
 }
 
 function scaleCard(){
-    this.setAttribute("style","transform: scale(1.1)")
+    if(this.id == "button")
+        scale = 1.3;
+    else
+        scale = 1.1;
+    this.setAttribute("style",`transform: scale(${scale})`);
 }
 
 function returnScale(){
     this.removeAttribute("style");
 }
 
-hover();
+function start(playerTries = 5,computerTries = 5){
+    const startButton = document.getElementById("button");
+    if(playerTries != 0 && computerTries != 0){
+        startButton.textContent = "START";
+        startButton.addEventListener("mouseenter",scaleCard);
+        startButton.addEventListener("mouseleave",returnScale);
+        startButton.addEventListener("click",hover);
+    }
+}
+
+start();
