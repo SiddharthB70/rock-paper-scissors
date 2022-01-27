@@ -91,7 +91,7 @@ function pickComputerCard(){
     }
     computerCards.appendChild(compCard);
     compCard.classList.add("card");
-    compCard.classList.add("computer-card");
+    compCard.id ="computer-card";
     setTimeout(rotateFront,1500);
 }
 
@@ -101,7 +101,7 @@ function rotateCard(){
 }
 
 function rotateFront(){
-    const compCard = document.querySelector(".computer-card");
+    const compCard = document.getElementById("computer-card");
     compCard.classList.add("front-rotate");
 }
 

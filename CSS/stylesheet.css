@@ -128,6 +128,7 @@ body{
 .card.rock{
     left: 0px;
 }
+
 .card.paper{
     left: 26px;
 }
@@ -170,15 +171,15 @@ body{
     transform: translateX(-33.9444954%);
 }
 
-.card.rock.hover{
+.rock.hover{
     left: 0px;
 }
 
-.card.paper.hover{
+.paper.hover{
     left: 185px;
 }
 
-.card.scissor.hover{
+.scissor.hover{
     left: 370px;
 }
 
@@ -194,18 +195,18 @@ body{
     left: -88.1325px;
 }
 
-.computer-card{
+#computer-card{
     top: -313.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
     left: -88.1325px;
     transform: rotateY(90deg);
 }
 
-.back-rotate{
+#computer-card-back.back-rotate{
     transform: rotateY(90deg);
 }
 
-.front-rotate{
+#computer-card.front-rotate{
     transform: rotateY(0deg);
 }
 
