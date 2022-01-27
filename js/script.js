@@ -43,19 +43,21 @@ function compareCards(cards){
         }
         else if(cards.toString() == matchup.toString()){
             message = "Player Wins";
-            playerTries--;
+            computerTries--;
             return;
         }
         else if(cards.toString() == (matchup.reverse()).toString()){
             message = "Computer Wins";
-            computerTries--;
+            playerTries--;
             return;
         }
     })
+    printScores();
     console.log(message);
 }
 
 function start(){
+    printScores();
     const startButton = document.getElementById("button");
     if(playerTries != 0 && computerTries != 0){
         startButton.textContent = "START";
@@ -63,6 +65,24 @@ function start(){
         startButton.addEventListener("mouseleave",scaleDown);
         startButton.addEventListener("click",hoverPlayerCards);
     }
+}
+
+function printScores(){
+    const triesCounter = document.querySelectorAll(".tries");
+    triesCounter[0].textContent = `Tries: ${playerTries}`;
+    triesCounter[1].textContent = `Tries: ${computerTries}`; 
+}
+
+function hoverPlayerCards(){
+    disableButton(this);
+    let delay = 0;
+    if(resetBoard())
+        delay = 3000;
+    setTimeout(function(){
+        const playerCards = document.querySelector(".cards");
+        playerCards.addEventListener("mouseenter",splitCards);
+        playerCards.addEventListener("mouseleave",joinCards)
+    },delay);
 }
 
 function disableButton(button){
@@ -100,19 +120,6 @@ function resetBoard(){
         return true;
     }
     return false;
-}
-
-
-function hoverPlayerCards(){
-    disableButton(this);
-    let delay = 0;
-    if(resetBoard())
-        delay = 3000;
-    setTimeout(function(){
-        const playerCards = document.querySelector(".cards");
-        playerCards.addEventListener("mouseenter",splitCards);
-        playerCards.addEventListener("mouseleave",joinCards)
-    },delay);
 }
 
 function splitCards(){

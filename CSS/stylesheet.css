@@ -55,14 +55,15 @@ body{
 
 .tries{
     position: absolute;
-    width: 113.75px;
-    height: 36px;
+    width: 120px;
+    height: 60px;
     background: rgba(58, 86, 106, 1);
     border-radius: 10px;
     align-items: center;
     display: flex;
     justify-content: center;
     top: 117.5px;
+    font-size: 30px;
 }
 
 .player.tries{
@@ -210,3 +211,16 @@ body{
     transform: rotateY(0deg);
 }
 
+#card-counter span{
+    position: absolute;
+    top: 330px;
+    font-size: 30px;
+}
+
+span.player{
+    left: 284.13px
+}
+
+span.computer{
+    left: 1180.38px
+}
