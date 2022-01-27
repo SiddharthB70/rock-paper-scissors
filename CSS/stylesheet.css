@@ -121,7 +121,8 @@ body{
     box-shadow: -20px 0px 30px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     position: absolute;
-    transition: left 1s,top 1s,box-shadow 1s;
+    transform: rotateY(0deg);
+    transition: left 1s,top 1s,box-shadow 1s,transform 0.5s;
 }
 
 .card.rock{
@@ -187,8 +188,24 @@ body{
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
 }
 
-#computer-card{
+#computer-card-back{
     top: -313.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
-    left: 808.25px;
+    left: -88.1325px;
 }
+
+.computer-card{
+    top: -313.6px;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
+    left: -88.1325px;
+    transform: rotateY(90deg);
+}
+
+.back-rotate{
+    transform: rotateY(90deg);
+}
+
+.front-rotate{
+    transform: rotateY(0deg);
+}
+

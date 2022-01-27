@@ -38,7 +38,6 @@ function joinCards(){
 function getPlayerCard(e){
     e.target.id = "player-card";
     e.stopImmediatePropagation();
-    getComputerCard();
     const playerCards = document.querySelector(".cards");
     playerCards.removeEventListener("mouseenter",splitCards);
     playerCards.removeEventListener("mouseleave",joinCards);
@@ -49,6 +48,8 @@ function getPlayerCard(e){
         card.removeEventListener("mouseleave",returnScale);
         card.removeAttribute("style");
     })
+    pickComputerCard();
+    setTimeout(rotateCard,1000);
 }
 
 function scaleCard(){
@@ -73,14 +74,40 @@ function start(playerTries = 5,computerTries = 5){
     }
 }
 
-function getComputerCard(){
+function pickComputerCard(){
     let cardNo = random();
-    const computerCards = document.querySelectorAll(".computer .card");
-    computerCards[cardNo].id = "computer-card";
+    const computerCards = document.querySelector(".computer.cards");
+    (computerCards.children)[cardNo].id = "computer-card-back";
+
+    let cardValue = random();
+    const compCard = document.createElement("img");
+    switch(cardValue){
+        case 0: compCard.src = "img/rock.png";
+                break;
+        case 1: compCard.src = "img/paper.png";
+                break;
+        case 2: compCard.src = "img/scissor.png";
+                break;
+    }
+    computerCards.appendChild(compCard);
+    compCard.classList.add("card");
+    compCard.classList.add("computer-card");
+    setTimeout(rotateFront,1500);
+}
+
+function rotateCard(){
+    const compBack = document.getElementById("computer-card-back");
+    compBack.classList.add("back-rotate");
+}
+
+function rotateFront(){
+    const compCard = document.querySelector(".computer-card");
+    compCard.classList.add("front-rotate");
 }
 
 function random(){
-    return Math.round(Math.random()*3);
+    let check = Math.random()*3;
+    return Math.floor(check);
 }
 
 start();
