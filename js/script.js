@@ -38,6 +38,7 @@ function joinCards(){
 function getPlayerCard(e){
     e.target.id = "player-card";
     e.stopImmediatePropagation();
+    getComputerCard();
     const playerCards = document.querySelector(".cards");
     playerCards.removeEventListener("mouseenter",splitCards);
     playerCards.removeEventListener("mouseleave",joinCards);
@@ -70,6 +71,16 @@ function start(playerTries = 5,computerTries = 5){
         startButton.addEventListener("mouseleave",returnScale);
         startButton.addEventListener("click",hover);
     }
+}
+
+function getComputerCard(){
+    let cardNo = random();
+    const computerCards = document.querySelectorAll(".computer .card");
+    computerCards[cardNo].id = "computer-card";
+}
+
+function random(){
+    return Math.round(Math.random()*3);
 }
 
 start();
