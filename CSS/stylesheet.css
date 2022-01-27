@@ -195,7 +195,7 @@ body{
     left: -88.1325px;
 }
 
-#computer-card{
+#computer-card-front{
     top: -313.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
     left: -88.1325px;
@@ -206,7 +206,7 @@ body{
     transform: rotateY(90deg);
 }
 
-#computer-card.front-rotate{
+#computer-card-front.front-rotate{
     transform: rotateY(0deg);
 }
 
