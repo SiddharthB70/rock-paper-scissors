@@ -138,19 +138,26 @@ body{
     left: 52px;
 }
 
-#button{
-    width: 131.25px;
+.button{
+    width: 120px;
     height: 72px;
     background: #192E47;
     border-radius: 20px;
     position: absolute;
-    left: 734.38px;
     top: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    transition: transform 0.2s;
+    transition: transform 0.2s,background-color 0.2s;
+}
+
+#start.button{
+    left: 654.38px
+}
+
+#reset.button{
+    left: 810.38px;
 }
 
 #message-counter{
@@ -223,4 +230,8 @@ span.player{
 
 span.computer{
     left: 1180.38px
+}
+
+.button.blocked{
+    background-color:#000000;
 }

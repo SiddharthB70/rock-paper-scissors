@@ -4,7 +4,7 @@ let computerTries = 5;
 
 
 function scaleUp(){
-    if(this.id == "button")
+    if(this.classList.contains("start"))
         scale = 1.3;
     else
         scale = 1.1;
@@ -20,45 +20,19 @@ function random(){
     return Math.floor(check);
 }
 
-function startGame(e){
-    removeCardHover();
-    getPlayerCard(e);
-    getComputerCard();
-    setTimeout(getResult,2000);
-    start();
-}
-
-function getResult(){
-    const playerCard = document.getElementById("player-card");
-    const compCard = document.getElementById("computer-card-front");
-    compareCards([playerCard.getAttribute("data-card"),compCard.getAttribute("data-card")]);
-}
-
-function compareCards(cards){
-    let message;
-    matchups.forEach(function(matchup){
-        if(cards[0] == cards[1]){
-            message = "Tie";
-            return;
-        }
-        else if(cards.toString() == matchup.toString()){
-            message = "Player Wins";
-            computerTries--;
-            return;
-        }
-        else if(cards.toString() == (matchup.reverse()).toString()){
-            message = "Computer Wins";
-            playerTries--;
-            return;
-        }
-    })
-    printScores();
-    console.log(message);
+function disableButton(button){
+    button.removeEventListener("click",hoverPlayerCards);
+    button.removeEventListener("mouseenter",scaleUp);
+    button.removeEventListener("mouseleave",scaleDown);
+    button.removeAttribute("style");
 }
 
 function start(){
     printScores();
-    const startButton = document.getElementById("button");
+    const startButton = document.getElementById("start");
+    startButton.classList.remove("blocked");
+    const resetButton = document.getElementById("reset");
+    resetButton.classList.add("blocked");
     if(playerTries != 0 && computerTries != 0){
         startButton.textContent = "START";
         startButton.addEventListener("mouseenter",scaleUp);
@@ -67,59 +41,11 @@ function start(){
     }
 }
 
-function printScores(){
-    const triesCounter = document.querySelectorAll(".tries");
-    triesCounter[0].textContent = `Tries: ${playerTries}`;
-    triesCounter[1].textContent = `Tries: ${computerTries}`; 
-}
-
 function hoverPlayerCards(){
-    disableButton(this);
-    let delay = 0;
-    if(resetBoard())
-        delay = 3000;
-    setTimeout(function(){
-        const playerCards = document.querySelector(".cards");
-        playerCards.addEventListener("mouseenter",splitCards);
-        playerCards.addEventListener("mouseleave",joinCards)
-    },delay);
-}
-
-function disableButton(button){
-    button.removeEventListener("click",hoverPlayerCards);
-    button.removeEventListener("mouseenter",scaleUp);
-    button.removeEventListener("mouseleave",scaleDown);
-    button.removeAttribute("style");
-}
-
-function resetBoard(){
-    const cardContainers = document.querySelectorAll(".cards");
-    const playerCard = document.getElementById("player-card");
-    const compCardBack = document.getElementById("computer-card-back");
-    const compCardFront = document.getElementById("computer-card-front");
-    if(playerCard && compCardFront && compCardBack){
-        compCardFront.classList.remove("front-rotate");
-        setTimeout(function(){
-            compCardBack.classList.remove("back-rotate");
-        },500)
-        setTimeout(function(){
-            cardContainers[1].removeChild(compCardFront);
-            playerCard.removeAttribute("id");
-            compCardBack.removeAttribute("id");
-            compCardFront.removeAttribute("id");
-        },1000)
-        setTimeout(function(){
-            cardContainers.forEach(function(container){
-                container.classList.remove("cards-hover");
-                let cards = Array.from(container.children);
-                cards.forEach(function(card){
-                    card.classList.remove("hover");
-                })
-            })
-        },2000);
-        return true;
-    }
-    return false;
+    this.classList.add("blocked");
+    const playerCards = document.querySelector(".cards");
+    playerCards.addEventListener("mouseenter",splitCards);
+    playerCards.addEventListener("mouseleave",joinCards)
 }
 
 function splitCards(){
@@ -149,9 +75,12 @@ function joinCards(){
     })
 }
 
-function getPlayerCard(e){
-    e.target.id = "player-card";
-    e.stopImmediatePropagation();
+function startGame(e){
+    removeCardHover();
+    getPlayerCard(e);
+    getComputerCard();
+    setTimeout(getResult,2000);
+    setTimeout(getResetButton,2000);
 }
 
 function removeCardHover(){
@@ -165,6 +94,11 @@ function removeCardHover(){
         card.removeEventListener("mouseleave",scaleDown);
         card.removeAttribute("style");
     })
+}
+
+function getPlayerCard(e){
+    e.target.id = "player-card";
+    e.stopImmediatePropagation();
 }
 
 function getComputerCard(){
@@ -208,5 +142,73 @@ function rotateCard(){
         compCard.classList.add("front-rotate");
     },500);
 }
+
+function getResult(){
+    const playerCard = document.getElementById("player-card");
+    const compCard = document.getElementById("computer-card-front");
+    compareCards([playerCard.getAttribute("data-card"),compCard.getAttribute("data-card")]);
+}
+
+function compareCards(cards){
+    let message;
+    matchups.forEach(function(matchup){
+        if(cards[0] == cards[1]){
+            message = "Tie";
+            return;
+        }
+        else if(cards.toString() == matchup.toString()){
+            message = "Player Wins";
+            computerTries--;
+            return;
+        }
+        else if(cards.toString() == (matchup.reverse()).toString()){
+            message = "Computer Wins";
+            playerTries--;
+            return;
+        }
+    })
+    printScores();
+}
+
+function printScores(){
+    const triesCounter = document.querySelectorAll(".tries");
+    triesCounter[0].textContent = `Tries: ${playerTries}`;
+    triesCounter[1].textContent = `Tries: ${computerTries}`; 
+}
+
+
+function getResetButton(){
+    const resetButton = document.getElementById("reset");
+    resetButton.classList.remove("blocked");
+    resetButton.addEventListener("click",resetBoard);
+    setTimeout(start,3000);
+}
+
+function resetBoard(){
+    const cardContainers = document.querySelectorAll(".cards");
+    const playerCard = document.getElementById("player-card");
+    const compCardBack = document.getElementById("computer-card-back");
+    const compCardFront = document.getElementById("computer-card-front");
+    compCardFront.classList.remove("front-rotate");
+    setTimeout(function(){
+        compCardBack.classList.remove("back-rotate");
+    },500)
+    setTimeout(function(){
+        cardContainers[1].removeChild(compCardFront);
+        playerCard.removeAttribute("id");
+        compCardBack.removeAttribute("id");
+        compCardFront.removeAttribute("id");
+    },1000)
+    setTimeout(function(){
+        cardContainers.forEach(function(container){
+            container.classList.remove("cards-hover");
+            let cards = Array.from(container.children);
+            cards.forEach(function(card){
+                card.classList.remove("hover");
+            })
+        })
+    },2000); 
+}
+
 
 start();
