@@ -1,6 +1,6 @@
 let matchups = [["R","S"],["S","P"],["P","R"]];
-let playerTries = 5;
-let computerTries = 5;
+let playerTries;
+let computerTries;
 
 
 function scaleUp(){
@@ -29,7 +29,10 @@ function disableButton(button){
 }
 
 function start(){
+    playerTries = 2;
+    computerTries = 2;
     printScores();
+    messagePanel("Press Start to begin the game");
     const startButton = document.getElementById("start");
     startButton.classList.remove("blocked");
     if(playerTries != 0 && computerTries != 0){
@@ -46,6 +49,7 @@ function blockStartButton(){
 }
 
 function hoverPlayerCards(){
+    messagePanel("Hover over the cards to pick a card")
     const playerCards = document.querySelector(".cards");
     playerCards.addEventListener("mouseenter",splitCards);
     playerCards.addEventListener("mouseleave",joinCards)
@@ -153,25 +157,26 @@ function getResult(){
 }
 
 function compareCards(cards){
-    let message, checkMatchUp;
+    let message, checkMatchUp, playerCard = returnCard(cards[0]),compCard = returnCard(cards[1]);
     for(let matchup of matchups){
         checkMatchUp = matchup.slice();
         if(cards[0] == cards[1]){
-            message = "Tie";
+            message = "It's a tie!";
             break;
         }
         else if(cards.toString() == checkMatchUp.toString()){
-            message = "Player Wins";
+            message = `Player Wins! ${playerCard} beats ${compCard}!`;
             computerTries--;
             break;
         }
         else if(cards.toString() == (checkMatchUp.reverse()).toString()){
-            message = "Computer Wins";
+            message = `Computer Wins! ${compCard} beats ${playerCard}!`;
             playerTries--;
             break;
         }
     }
     printScores();
+    messagePanel(message);
 }
 
 function printScores(){
@@ -204,9 +209,32 @@ function resetBoard(){
                 card.classList.remove("hover");
             })
         })
-    },2000); 
-    setTimeout(hoverPlayerCards,3000);
+    },2000);
+    if(!checkGameOver()) 
+        setTimeout(hoverPlayerCards,3000);
+    else
+        setTimeout(start,3000);
 }
 
+function messagePanel(messageText){
+    const messagePanel = document.getElementById("message-panel");
+    messagePanel.textContent = messageText;
+}
+
+function returnCard(card){
+    if(card == "R")
+        return "Rock";
+    else if(card == "P")
+        return "Paper";
+    else if(card == "S")
+        return "Scissor";
+}
+
+function checkGameOver(){
+    if (playerTries == 0 || computerTries == 0)
+        return true;
+    else 
+        return false;
+}
 
 start();
