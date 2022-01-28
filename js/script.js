@@ -22,7 +22,7 @@ function random(){
 
 function disableButton(button){
     button.classList.add("blocked");
-    button.removeEventListener("click",hoverPlayerCards);
+    button.removeEventListener("click",blockStartButton);
     button.removeEventListener("mouseenter",scaleUp);
     button.removeEventListener("mouseleave",scaleDown);
     button.removeAttribute("style");
@@ -32,18 +32,20 @@ function start(){
     printScores();
     const startButton = document.getElementById("start");
     startButton.classList.remove("blocked");
-    // const resetButton = document.getElementById("reset");
-    // resetButton.classList.add("blocked");
     if(playerTries != 0 && computerTries != 0){
         startButton.textContent = "START";
         startButton.addEventListener("mouseenter",scaleUp);
         startButton.addEventListener("mouseleave",scaleDown);
-        startButton.addEventListener("click",hoverPlayerCards);
+        startButton.addEventListener("click",blockStartButton);
     }
 }
 
-function hoverPlayerCards(){
+function blockStartButton(){
     disableButton(this);
+    hoverPlayerCards();
+}
+
+function hoverPlayerCards(){
     const playerCards = document.querySelector(".cards");
     playerCards.addEventListener("mouseenter",splitCards);
     playerCards.addEventListener("mouseleave",joinCards)
@@ -82,7 +84,6 @@ function startGame(e){
     getComputerCard();
     setTimeout(getResult,2000);
     setTimeout(resetBoard,3000);
-    // setTimeout(getResetButton,2000);
 }
 
 function removeCardHover(){
@@ -152,23 +153,24 @@ function getResult(){
 }
 
 function compareCards(cards){
-    let message;
-    matchups.forEach(function(matchup){
+    let message, checkMatchUp;
+    for(let matchup of matchups){
+        checkMatchUp = matchup.slice();
         if(cards[0] == cards[1]){
             message = "Tie";
-            return;
+            break;
         }
-        else if(cards.toString() == matchup.toString()){
+        else if(cards.toString() == checkMatchUp.toString()){
             message = "Player Wins";
             computerTries--;
-            return;
+            break;
         }
-        else if(cards.toString() == (matchup.reverse()).toString()){
+        else if(cards.toString() == (checkMatchUp.reverse()).toString()){
             message = "Computer Wins";
             playerTries--;
-            return;
+            break;
         }
-    })
+    }
     printScores();
 }
 
@@ -176,13 +178,6 @@ function printScores(){
     const triesCounter = document.querySelectorAll(".tries");
     triesCounter[0].textContent = `Tries: ${playerTries}`;
     triesCounter[1].textContent = `Tries: ${computerTries}`; 
-}
-
-
-function getResetButton(){
-    const resetButton = document.getElementById("reset");
-    resetButton.classList.remove("blocked");
-    resetButton.addEventListener("click",resetBoard);
 }
 
 function resetBoard(){
@@ -199,6 +194,7 @@ function resetBoard(){
         playerCard.removeAttribute("id");
         compCardBack.removeAttribute("id");
         compCardFront.removeAttribute("id");
+        compCardFront.removeAttribute("data-card");
     },1000)
     setTimeout(function(){
         cardContainers.forEach(function(container){
@@ -209,7 +205,7 @@ function resetBoard(){
             })
         })
     },2000); 
-    setTimeout(start,3000);
+    setTimeout(hoverPlayerCards,3000);
 }
 
 
