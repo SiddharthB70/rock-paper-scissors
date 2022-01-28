@@ -1,6 +1,6 @@
 let matchups = [["R","S"],["S","P"],["P","R"]];
-let playerTries = 2;
-let computerTries= 2;
+let playerTries = 5;
+let computerTries = 5;
 
 
 function scaleUp(){
@@ -51,8 +51,8 @@ function restart(){
     playerCard.classList.remove("winner","loser");
     setTimeout(function(){
         resetBoard();
-        playerTries = 2;
-        computerTries = 2;
+        playerTries = 5;
+        computerTries = 5;
         blockStartButton();
     },500)
 }
