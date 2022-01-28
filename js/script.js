@@ -42,7 +42,6 @@ function start(){
     }
     else   
         startButton.addEventListener("click",restart);
-    
 }
 
 function restart(){
@@ -55,14 +54,6 @@ function restart(){
         playerTries = 2;
         computerTries = 2;
         blockStartButton();
-        // setTimeout(function(){
-        //     playerTries = 2;
-        //     computerTries = 2;
-        //     blockStartButton();
-        // },3000)
-        // playerTries = 2;
-        // computerTries = 2;
-        // blockStartButton();
     },500)
 }
 
@@ -243,8 +234,7 @@ function resetBoard(){
                 card.classList.remove("hover");
             })
         })
-    },2000);
-    // if(!checkGameOver()) 
+    },2000); 
     setTimeout(hoverPlayerCards,3000);
 }
 
@@ -288,4 +278,5 @@ function getWinner(){
     messagePanel(message);
     start();
 }
+
 start();
