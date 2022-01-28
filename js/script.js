@@ -21,6 +21,7 @@ function random(){
 }
 
 function disableButton(button){
+    button.classList.add("blocked");
     button.removeEventListener("click",hoverPlayerCards);
     button.removeEventListener("mouseenter",scaleUp);
     button.removeEventListener("mouseleave",scaleDown);
@@ -31,8 +32,8 @@ function start(){
     printScores();
     const startButton = document.getElementById("start");
     startButton.classList.remove("blocked");
-    const resetButton = document.getElementById("reset");
-    resetButton.classList.add("blocked");
+    // const resetButton = document.getElementById("reset");
+    // resetButton.classList.add("blocked");
     if(playerTries != 0 && computerTries != 0){
         startButton.textContent = "START";
         startButton.addEventListener("mouseenter",scaleUp);
@@ -42,7 +43,7 @@ function start(){
 }
 
 function hoverPlayerCards(){
-    this.classList.add("blocked");
+    disableButton(this);
     const playerCards = document.querySelector(".cards");
     playerCards.addEventListener("mouseenter",splitCards);
     playerCards.addEventListener("mouseleave",joinCards)
@@ -80,7 +81,8 @@ function startGame(e){
     getPlayerCard(e);
     getComputerCard();
     setTimeout(getResult,2000);
-    setTimeout(getResetButton,2000);
+    setTimeout(resetBoard,3000);
+    // setTimeout(getResetButton,2000);
 }
 
 function removeCardHover(){
@@ -181,7 +183,6 @@ function getResetButton(){
     const resetButton = document.getElementById("reset");
     resetButton.classList.remove("blocked");
     resetButton.addEventListener("click",resetBoard);
-    setTimeout(start,3000);
 }
 
 function resetBoard(){
@@ -208,6 +209,7 @@ function resetBoard(){
             })
         })
     },2000); 
+    setTimeout(start,3000);
 }
 
 
