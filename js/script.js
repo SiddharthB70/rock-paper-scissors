@@ -54,6 +54,7 @@ function restart(){
         playerTries = 5;
         computerTries = 5;
         blockStartButton();
+        printScores();
     },500)
 }
 
