@@ -103,7 +103,7 @@ body{
     position: absolute;
     width: 227.5px;
     height: 243.41px;
-    top: 53.6px;
+    top: 33.6px;
     transition: all 1s;
 }
 
@@ -190,18 +190,18 @@ body{
 
 #player-card{
     left: 510.75px;
-    top: -313.6px;
+    top: -443.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
 }
 
 #computer-card-back{
-    top: -313.6px;
+    top: -443.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
     left: -88.1325px;
 }
 
 #computer-card-front{
-    top: -313.6px;
+    top: -443.6px;
     box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.25);
     left: -88.1325px;
     transform: rotateY(90deg);
@@ -217,7 +217,7 @@ body{
 
 #card-counter span{
     position: absolute;
-    top: 330px;
+    top: 300px;
     font-size: 30px;
 }
 
