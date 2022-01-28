@@ -1,6 +1,6 @@
 let matchups = [["R","S"],["S","P"],["P","R"]];
-let playerTries;
-let computerTries;
+let playerTries = 2;
+let computerTries= 2;
 
 
 function scaleUp(){
@@ -25,26 +25,50 @@ function disableButton(button){
     button.removeEventListener("click",blockStartButton);
     button.removeEventListener("mouseenter",scaleUp);
     button.removeEventListener("mouseleave",scaleDown);
+    button.removeEventListener("click",restart);
     button.removeAttribute("style");
 }
 
 function start(){
-    playerTries = 2;
-    computerTries = 2;
     printScores();
-    messagePanel("Press Start to begin the game");
     const startButton = document.getElementById("start");
     startButton.classList.remove("blocked");
-    if(playerTries != 0 && computerTries != 0){
-        startButton.textContent = "START";
-        startButton.addEventListener("mouseenter",scaleUp);
-        startButton.addEventListener("mouseleave",scaleDown);
+    startButton.textContent = "START";
+    startButton.addEventListener("mouseenter",scaleUp);
+    startButton.addEventListener("mouseleave",scaleDown);
+    if(!checkGameOver()){
+        messagePanel("Press Start to begin the game");
         startButton.addEventListener("click",blockStartButton);
     }
+    else   
+        startButton.addEventListener("click",restart);
+    
+}
+
+function restart(){
+    const compCardFront = document.getElementById("computer-card-front");
+    const playerCard = document.getElementById("player-card");
+    compCardFront.classList.remove("winner","loser");
+    playerCard.classList.remove("winner","loser");
+    setTimeout(function(){
+        resetBoard();
+        playerTries = 2;
+        computerTries = 2;
+        blockStartButton();
+        // setTimeout(function(){
+        //     playerTries = 2;
+        //     computerTries = 2;
+        //     blockStartButton();
+        // },3000)
+        // playerTries = 2;
+        // computerTries = 2;
+        // blockStartButton();
+    },500)
 }
 
 function blockStartButton(){
-    disableButton(this);
+    const button = document.querySelector(".button");
+    disableButton(button);
     hoverPlayerCards();
 }
 
@@ -56,6 +80,7 @@ function hoverPlayerCards(){
 }
 
 function splitCards(){
+    messagePanel("Click to choose card")
     const cardContainers = document.querySelectorAll(".cards");
     cardContainers.forEach(function(container){
         container.classList.add("cards-hover");
@@ -72,6 +97,7 @@ function splitCards(){
 }
 
 function joinCards(){
+    messagePanel("Hover over the cards to pick a card")
     const cardContainers = document.querySelectorAll(".cards");
     cardContainers.forEach(function(container){
         container.classList.remove("cards-hover");
@@ -87,7 +113,14 @@ function startGame(e){
     getPlayerCard(e);
     getComputerCard();
     setTimeout(getResult,2000);
-    setTimeout(resetBoard,3000);
+    //Below function runs only after the comparison of cards
+    setTimeout(function(){
+        if(!checkGameOver())
+            setTimeout(resetBoard,1500);
+        else
+            setTimeout(getWinner,1000);
+    },2000)
+    
 }
 
 function removeCardHover(){
@@ -190,6 +223,7 @@ function resetBoard(){
     const playerCard = document.getElementById("player-card");
     const compCardBack = document.getElementById("computer-card-back");
     const compCardFront = document.getElementById("computer-card-front");
+    
     compCardFront.classList.remove("front-rotate");
     setTimeout(function(){
         compCardBack.classList.remove("back-rotate");
@@ -210,10 +244,8 @@ function resetBoard(){
             })
         })
     },2000);
-    if(!checkGameOver()) 
-        setTimeout(hoverPlayerCards,3000);
-    else
-        setTimeout(start,3000);
+    // if(!checkGameOver()) 
+    setTimeout(hoverPlayerCards,3000);
 }
 
 function messagePanel(messageText){
@@ -237,4 +269,23 @@ function checkGameOver(){
         return false;
 }
 
+function getWinner(){
+    let message;
+    const playerCard = document.getElementById("player-card");
+    const compCard = document.getElementById("computer-card-front");
+    if(playerTries == 0){
+        message = "Computer wins the game!";
+        playerCard.classList.add("loser");
+        compCard.classList.add("winner");
+    }
+    else{
+        message = "Player wins the game!";
+        playerCard.classList.add("winner");
+        compCard.classList.add("loser");
+    }
+
+    message += " Press Start to begin another game";
+    messagePanel(message);
+    start();
+}
 start();

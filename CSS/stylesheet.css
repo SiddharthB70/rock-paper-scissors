@@ -161,14 +161,15 @@ body{
 
 #message-panel{
     position: absolute;
-    width: 630px;
-    height: 72px;
+    width: 700px;
+    height: 90px;
     background: #3A566A;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 36px;
+    text-align: center;
 }
 
 .cards-hover{
@@ -231,4 +232,13 @@ span.computer{
 
 .button.blocked{
     background-color:#000000;
+}
+
+.cards .card.winner{
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 30px 5px rgba(227, 216, 186, 1) !important;
+}
+
+.cards .card.loser{
+    transform: scale(0.8) !important;
 }
